@@ -22,6 +22,8 @@ int i=0;
 int PIN_CODE[]={1,2,3};
 int btnVal=0;
 
+
+
 void setup() {
   // cycle and make the Button pins an input:
   for(int i = 2; i<=4; i++){pinMode(i, INPUT);}
@@ -29,39 +31,42 @@ void setup() {
   Keyboard.begin();
 }
 
+
+
+
 void loop() {
   //Polling to avoid the program from looping all the time. 
   while(digitalRead(btn1) == HIGH && digitalRead(btn2) == HIGH && digitalRead(btn3) == HIGH){ delay(100);} // wait for the button to be pressed. 
   btnVal = btn_number();
     
-  if (btnVal==PIN_CODE[counter]){counter++;}
-  else {counter=0;}
+  if (btnVal==PIN_CODE[counter])
+  {counter++;}
+  else 
+  {counter=0;}
 
   while(digitalRead(btn1) == LOW || digitalRead(btn2) == LOW || digitalRead(btn3) == LOW){ delay(100); } //wait until the button is no longer pressed. 
   
     while (counter >= (sizeof(PIN_CODE)/sizeof(int))) //denne er visst sann hele tiden. skipper rett forbi pinkoden og looper her. 
            {
-              while(digitalRead(btn1) == HIGH && digitalRead(btn2) == HIGH && digitalRead(btn3) == HIGH){ delay(100);} // wait for the button to be pressed. 
-              /**
-	      int buttonState = digitalRead(btn1);
-              if ((buttonState != previousButtonState) && (buttonState == LOW))
-              {
-                Keyboard.println("PAssword1 ");
-              }
-             previousButtonState = buttonState;
-		**/
+             while(digitalRead(btn1) == HIGH && digitalRead(btn2) == HIGH && digitalRead(btn3) == HIGH){ delay(100);} // wait for the button to be pressed. 
+
 	     switch(btn_number())
 	     {
 		case 1:
-    Keyboard.println("PAssword1");
+		Keyboard.println("UserName");
+		Keyboard.press(KEY_TAB);
+		Keyboard.release(KEY_TAB);
+		Keyboard.println("Password1");
+		Keyboard.press(KEY_RETURN);
+		Keyboard.release(KEY_RETURN);
 		break;
 		case 2:
 		Keyboard.println("PAssword2");
 		break;
 		case 3:
-		Keyboard.println("PAssword3");
-    Keyboard.press(KEY_RETURN);
-    Keyboard.release(KEY_RETURN);
+		Keyboard.println("Password3");
+		Keyboard.press(KEY_RETURN);
+		Keyboard.release(KEY_RETURN);
 		break;
 		default:
 		Keyboard.println("nope");
@@ -78,31 +83,3 @@ int btn_number()
   if (digitalRead(btn3)==0){return 3;}
   else{return 0;}
 }
-
-  
-
-
-
-
-
-
-
-
-    /* saving this code for the password loop. 
-  
-  // read the pushbutton:
-  int buttonState = digitalRead(buttonPin);
-  // if the button state has changed,
-  if ((buttonState != previousButtonState)
-      // and it's currently pressed:
-      && (buttonState == HIGH)) {
-    // increment the button counter
-    counter++;
-    // type out a message
-    Keyboard.print("You pressed the button ");
-    Keyboard.print(counter);
-    Keyboard.println(" times.");
-  }
-  // save the current button state for comparison next time:
-  previousButtonState = buttonState;
-  */
