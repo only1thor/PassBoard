@@ -48,7 +48,7 @@ void loop() {
   
     while (counter >= (sizeof(PIN_CODE)/sizeof(int))) //denne er visst sann hele tiden. skipper rett forbi pinkoden og looper her. 
            {
-             while(digitalRead(btn1) == HIGH && digitalRead(btn2) == HIGH && digitalRead(btn3) == HIGH){ delay(100);} // wait for the button to be pressed. 
+             while(digitalRead(btn1) == HIGH && digitalRead(btn2) == HIGH && digitalRead(btn3) == HIGH){ delay(100);Keyboard.write(0);} // wait for the button to be pressed, and write NULL to make the input faster by keeping the keyboard active. 
 
 	     switch(btn_number())
 	     {
