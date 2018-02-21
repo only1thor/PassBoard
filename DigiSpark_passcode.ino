@@ -1,3 +1,6 @@
+# made for the DigiSpark board by digispark
+# https://www.tindie.com/products/digistump/digispark-the-tiny-arduino-enabled-usb-dev-board/
+
 #include "DigiKeyboard.h"
 const int btn=2;
 const int pwr=0;
